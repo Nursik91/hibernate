@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+    <security:http auto-config="true">
+        <security:intercept-url pattern="/welcome"
+                                access="hasRole('ROLE_USER')"/>
+        <security:form-login login-page="/login"
+                             default-target-url="/welcome"
+                             authentication-failure-url="/login?error"
+                            username-parameter="username"
+                            password-parameter="password"/>
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="userService">
+            <security:user-service>
+                <security:user name="nursike"
+                               password="{noop}123"
+                               authorities="ROLE_USER"/>
+            </security:user-service>
+            <!--<security:password-encoder ref="encoder"></security:password-encoder>-->
+        </security:authentication-provider>
+    </security:authentication-manager>
+    <bean id="userService" class="kz.nursike.service.UserServiceImpl"/>
+    <bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <constructor-arg name="strength" value="11"/>
+    </bean>
+</beans>
