@@ -7,7 +7,7 @@ import java.util.List;
  * Created by ЕрежеповН on 22.12.2017.
  */
 @Entity
-@Table(name = "user")
+@Table(name =  "`user`")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,10 +5,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by ЕрежеповН on 22.12.2017.
  */
+@Repository
 public class UserDAOImpl implements UserDAO {
 
     @Autowired

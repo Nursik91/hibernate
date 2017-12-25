@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserController {
 
+    @RequestMapping(value = "/registration")
+    public String registration() {
+        return "registration";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error) {
         if (error != null) {
